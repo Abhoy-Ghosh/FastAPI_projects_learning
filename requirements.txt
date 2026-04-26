@@ -1,0 +1,3 @@
+fastapi
+uvicorn # server
+pyd # pydantic type checker
