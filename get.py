@@ -27,6 +27,8 @@ def view():
     data  =load_json_data()
     return data
 
+
+#path parameters
 @app.get("/view/{patients_id}") # patients_id -> path parameter
 def view_patients(patients_id : str = Path(...,description="The ID of the patient you want to view",example="P001")): #pass the path parameter into the function
    # path function should be called where we pass path params in the function
@@ -40,6 +42,8 @@ def view_patients(patients_id : str = Path(...,description="The ID of the patien
  
     # return {"error": "Patient not found"} # return by function if the patient is not found
     raise HTTPException(status_code=404, detail="Patient not found")
+
+
 
 
 # Query parameters
@@ -64,6 +68,8 @@ def sort_patients(sort_by: str = Query(...,description="sort on the basis of hei
 
     return sorted_data
 
+
+
 @app.get("/search")
 def search_details_by_patientID(patient_id : str = Query(...,description="show names using patients id",example="P001")):
      
@@ -74,5 +80,5 @@ def search_details_by_patientID(patient_id : str = Query(...,description="show n
      
      patient = data[patient_id]
      result ={key : patient[key] for key in ['name','age','gender','city']}
-     
+
      return result
